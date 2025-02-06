@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            /* display: flex;
+            flex-wrap: wrap;
+            justify-content: center; */
+        }
+        table {
+            border-collapse: collapse;
+            height: auto;
+        }
+        TD {
+            font-family: arial;
+            font-size: 8px;
+            vertical-align: top;
+        }
+        #divCodBarras{
+            width: 230px; 
+            overflow: auto;
+            padding: 10px;
+            margin: 5px;
+        }
+        .BordaInfDir {
+            border-right: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+        .BordaInf {
+            border-bottom: 2px solid black;
+        }
+        .BordaEsq {
+            border-left: 2px solid black;
+        }
+        .BordaInfEsq {
+            border-bottom: 2px solid black;
+            border-left: 2px solid black;
+        }
+        .BordaDirTracejada {
+            border-right: 1px dotted;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .BordaTodas {
+            border-right: 2px solid black;
+            border-left: 2px solid black;
+            border-top: 2px solid black;
+            border-bottom: 2px solid black;
+        }
+        .style57 {
+            font-size: 6px;
+        }
+        .style58 {
+            font-size: 1px;
+        }
+        .style59 {
+            font-size: 11px;
+            font-style: italic;
+            font-weight: bold;
+        }
+        .style60 {
+            font-size: 23px;
+            font-weight: bold;
+        }
+        .style62 {
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os elementos sejam movidos para a próxima linha quando não houver espaço */
+        }
+
+        .table-wrapper {
+            flex: 1 1 45%; /* Ajusta as tabelas para ocupar 45% da largura do contêiner */
+            margin: 10px; /* Adiciona espaçamento entre as tabelas */
+        }
+        .espacamento-baixo {
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% for ar in excel_data %}
+            <div class="table-wrapper">
+                <br>
+                <table border="0" cellspacing="0" class="BordaTodas">
+                    <tbody>
+                        <tr>
+                            <td width="31" rowspan="12" valign="bottom" class="BordaDirTracejada">
+                                <div align="center">
+                                    <img src="file:///home/luan/Downloads/ar2_r3_c2.gif">
+                                </div>
+                            </td>
+                            <td width="7" height="30">&nbsp;</td>
+                            <td width="124" class="BordaInf">
+                                <img src="file:///home/luan/Downloads/logo_correios.gif" width="119" height="25" alt="">
+                            </td>
+                            <td width="86" class="style58 BordaInf">
+                                <span class="style59">AVISO DE <br> RECEBIMENTO</span>
+                            </td>
+                            <td colspan="3" align="center" valign="middle" class="BordaInf style60">
+                                <span style="margin-left: 40px;">AR</span>
+                            </td>
+                            <td align="center" valign="middle" class="BordaInf style62">&nbsp;</td>
+                            <td width="126" class="BordaInfEsq">DATA DE POSTAGEM</td>
+                        </tr>
+                        <tr>
+                            <td height="32">&nbsp;</td>
+                            <td colspan="6" rowspan="2" class="BordaInfEsq">
+                                <table border="0" width="370px" height="176px">
+                                    <tbody>
+                                        <tr>
+                                            <td valign="top" class="style24">
+                                                <span class="style36">DESTINATÁRIO</span><br>
+                                                <span class="style38">
+                                                    {{ ar.destinatario_nome }}<br>
+                                                    {{ ar.destinatario_endereco }} {{ ar.destinatario_numero }} {{ ar.destinatario_complemento }}<br>
+                                                    {{ ar.destinatario_bairro }}<br>
+                                                    {{ ar.destinatario_cep }} - {{ ar.destinatario_cidade }} - {{ ar.destinatario_uf }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" valign="bottom">
+                                                <div id="divCodBarras" style="border: 1px dotted black; font-family: Arial, Helvetica, sans-serif; font-size: 8px;">
+                                                    (CÓDIGO DE BARRAS OU Nº DE REGISTRO DO OBJETO)
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="bottom">
+                                                <span class="style42">ENDEREÇO PARA DEVOLUÇÃO DO AR</span><br>
+                                                <span class="style43">
+                                                    {{ ar.remetente_nome }}<br>
+                                                    {{ ar.remetente_endereco }} {{ ar.remetente_numero }}<br>
+                                                    {{ ar.remetente_bairro }}<br>
+                                                    {{ ar.remetente_cep }} - {{ ar.remetente_cidade }} - {{ ar.remetente_uf }}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                            <td class="BordaInfEsq espacamento-baixo">UNIDADE DE POSTAGEM</td>
+                        </tr>
+                        <tr>
+                            <td height="148">&nbsp;</td>
+                            <td align="center" class="BordaInfEsq">CARIMBO<br> UNIDADE DE ENTREGA</td>
+                        </tr>
+                        <tr>
+                            <td height="32">&nbsp;</td>
+                            <td colspan="2" align="center" class="BordaEsq"><strong>TENTATIVAS DE ENTREGA</strong></td>
+                            <td colspan="5" class="BordaInfEsq">OBSERVAÇÃO<br>
+                                <span class="style57">{{ ar.observacao }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="71" rowspan="6">&nbsp;</td>
+                            <td rowspan="5" class="BordaEsq">
+                                1ª _______/_______/_______<br><br>
+                                2ª _______/_______/_______<br><br>
+                                3ª _______/_______/_______
+                            </td>
+                            <td rowspan="5" align="center">
+                                ______ : ______h<br><br>
+                                ______ : ______h<br><br>
+                                ______ : ______h
+                            </td>
+                            <td height="9" colspan="4" align="center" valign="top" class="style57 BordaEsq"><strong>MOTIVO DE DEVOLUÇÃO</strong></td>
+                            <td rowspan="6" class="BordaInfEsq">RUBRICA E MATRÍCULA DO<br>CARTEIRO</td>
+                        </tr>
+                        <tr>
+                            <td width="21" height="58" rowspan="5" class="BordaInfEsq">
+                                <img src="file:///home/luan/Downloads/ar2_r6_c10.gif" alt="">
+                            </td>
+                            <td width="71" height="13"><span class="style57">Mudou-se</span></td>
+                            <td width="15" rowspan="5" class="BordaInf">
+                                <img src="file:///home/luan/Downloads/ar2_r5_c5.gif" alt="">
+                            </td>
+                            <td width="49"><span class="style57">Recusado</span></td>
+                        </tr>
+                        <tr>
+                            <td height="12"><span class="style57">Endereço insuficiente</span></td>
+                            <td width="49"><span class="style57">Não procurado</span></td>
+                        </tr>
+                        <tr>
+                            <td height="11"><span class="style57">Não existe o número</span></td>
+                            <td width="49"><span class="style57">Ausente</span></td>
+                        </tr>
+                        <tr>
+                            <td height="9" valign="middle"><span class="style57">Desconhecido</span></td>
+                            <td width="49" valign="middle"><span class="style57">Falecido</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="BordaInfEsq"><br><span class="style57"></span></td>
+                            <td height="11" class="BordaInf style57" style="padding-top: 8px">Outros</td>
+                            <td width="49" align="right" valign="bottom" class="BordaInf"><br><span class="style58"></span></td>
+                        </tr>
+                        <tr>
+                            <td height="24">&nbsp;</td>
+                            <td colspan="6" class="BordaInfEsq">ASSINATURA DO RECEBEDOR</td>
+                            <td class="BordaInfEsq espacamento-baixo">DATA DE ENTREGA </td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td colspan="6" class="BordaEsq espacamento-baixo">NOME LEGÍVEL DO RECEBEDOR</td>
+                            <td class="BordaEsq espacamento-baixo">N° DOC. DE IDENTIDADE </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correios AR</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center bg-primary text-white">
+                        <h3>Correios AR</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            
+                            <!-- Campo de Upload de Arquivo -->
+                            <div class="form-group">
+                                <label for="fileUpload">Selecione o Arquivo Excel:</label>
+                                <input type="file" class="form-control-file" id="fileUpload" name="file" required>
+                            </div>
+
+                            <!-- Botão para Enviar Excel -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-3">Enviar</button>
+                            </div>
+                            
+                            <!-- <div class="form-group">
+                                <label for="campo1">CEP:</label>
+                                <input type="text" class="form-control" id="campo1" name="campo1" placeholder="Digite o valor do Campo 1">
+                            </div>
+                            <div class="form-group">
+                                <label for="campo2">Nome / Empresa / Promoção:</label>
+                                <input type="text" class="form-control" id="campo2" name="campo2" placeholder="Digite o valor do Campo 2">
+                            </div> -->
+                            
+                            <!-- Botão para Enviar Campos -->
+                            <!-- <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-3">Enviar</button>
+                            </div> -->
+                        </form>
+
+                        <!-- Botão para Download do Excel -->
+                        <div class="text-center mt-3">
+                            <a href="{% url 'baixar_excel' %}" class="btn btn-success">
+                                <i class="fas fa-file-excel"></i> Download Excel
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
